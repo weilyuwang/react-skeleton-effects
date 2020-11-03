@@ -1,9 +1,31 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 const Articles = () => {
+  const [articles, setArticles] = useState(null);
+
+  useEffect(() => {
+    setTimeout(async () => {
+      const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+      // Body.json() is asynchronous and returns a Promise object
+      // that resolves to a JavaScript object.
+      // JSON.parse() is synchronous can parse a string and
+      // change the resulting returned JavaScript object.
+      const data = await res.json();
+      setArticles(data);
+    }, 3000);
+  });
+
   return (
     <div>
       <h2>Articles</h2>
+      {articles &&
+        articles.map((article) => (
+          <div className="article" key={article.id}>
+            <h3>{article.title}</h3>
+            <p>{article.body}</p>
+          </div>
+        ))}
+      {!articles && <div>loading...</div>}
     </div>
   );
 };
