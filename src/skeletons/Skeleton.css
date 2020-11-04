@@ -32,3 +32,12 @@
   margin: 20px auto;
   padding-bottom: 12px;
 }
+
+/* skeleton profile */
+/* align-items: center; => vertically align items */
+.skeleton-profile {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 20px;
+  align-items: center;
+}
